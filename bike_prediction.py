@@ -15,11 +15,15 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
 
     def index_to_hour(x):
         #TODO CP2 - return the hour information from the index x
-        #x.getIndex
+
+        #for i in range(dfStation.index.values.shape[0]):
+         #   print((pd.to_datetime(dfStation.index.values[i])).hour)
+
         pass
 
     def index_to_weekday(x):
         # TODO CP2 - return the weekday information from the index x
+
         pass
 
     ## Load data
@@ -30,12 +34,15 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
     if use_time_features:
         #TODO CP2 extract time features (hour and dayofweek) and add it to the dataframe
 
-        index_to_hour(dfStation)
+        dfStation['TimeStamp'] = dfStation.index
+        dfStation.insert(0,column='weekday',value=dfStation['TimeStamp'].dt.dayofweek)
+        dfStation.insert(0, column='hour', value=dfStation['TimeStamp'].dt.hour)
+        dfStation.drop(columns=['TimeStamp'])
 
-        print(dfStation.iloc[1:50])
+        #print(dfStation.iloc[:10])
 
-        #print("Hour test:","Day test")
-        #pass
+        #dfStation['weekday'] = dfStation['bikes(t-20)']#(pd.to_datetime(dfStation.index.values)).weekday()
+
 
     ## Split the data into train and test sets (important keep the temporal order)
     #TODO CP1 split the dataframe into train and test sets (75% - 25%)
@@ -46,13 +53,13 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
     ## Split the train_set into X_train (input data), y_train (output data)
     #TODO CP1 split the train set to isolate input from output data
     y_train = train_set.loc[:,'bikes(t+15)':'bikes(t+60)']
-    X_train = train_set.loc[:,'bikes(t-20)':'bikes(t)']
+    X_train = train_set.loc[:,:'bikes(t)']
 
 
     ## Split the test_set into X_test (input data), y_test (output data, aka ground truth)
     # TODO CP1 split the test set to isolate input from output data
     y_test = test_set.loc[:,'bikes(t+15)':'bikes(t+60)']
-    X_test = test_set.loc[:,'bikes(t-20)':'bikes(t)']
+    X_test = test_set.loc[:,:'bikes(t)']
 
     #print(y_test.iloc[1:50])
 
@@ -77,7 +84,6 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
 
     ## Compare the obtained predictions and the ground_truth(y_test_set)
     #TODO CP1 Compare the predictions and the groundtruth and measure the Mean Aboslute Error (of each horizon)
-
 
     y_hat_test = y_hat_test.reset_index(drop=True)
     y_test = y_test.reset_index(drop=True)
@@ -157,6 +163,10 @@ if __name__ == "__main__":
     for station in range(3):
 
         print("\nStation_{0} :".format(station))
-        mae = evaluate(station_id=station, show_plot=True, use_time_features=False)
-        print("Mean absolute error: {}".format(mae))
+        mae = evaluate(station_id=station, show_plot=False, use_time_features=False, plot_gini_coef=True)
+        print("Mean absolute error without time: {}".format(mae))
+
+
+        mae = evaluate(station_id=station, show_plot=False, use_time_features=True, plot_gini_coef=True)
+        print("Mean absolute error with time: {}".format(mae))
 
