@@ -1,10 +1,9 @@
 import json
-import pandas
+import pandas as pd
 import numpy as np
 import datetime
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 
@@ -16,6 +15,7 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
 
     def index_to_hour(x):
         #TODO CP2 - return the hour information from the index x
+        #x.getIndex
         pass
 
     def index_to_weekday(x):
@@ -24,17 +24,24 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
 
     ## Load data
     #TODO CP1 load the data
-    dfStation0 = load_data(station_id)
-
+    dfStation = load_data(station_id)
 
     ## Process data (Note: data could also be normalized and/or one-hot encoded for better results)
     if use_time_features:
         #TODO CP2 extract time features (hour and dayofweek) and add it to the dataframe
-        pass
+
+        index_to_hour(dfStation)
+
+        print(dfStation.iloc[1:50])
+
+        #print("Hour test:","Day test")
+        #pass
 
     ## Split the data into train and test sets (important keep the temporal order)
     #TODO CP1 split the dataframe into train and test sets (75% - 25%)
-    train_set,test_set = train_test_split(dfStation0, test_size=0.25,shuffle=False)
+    train_set,test_set = train_test_split(dfStation, test_size=0.25,shuffle=False)
+
+    #print(train_set.iloc[:10])
 
     ## Split the train_set into X_train (input data), y_train (output data)
     #TODO CP1 split the train set to isolate input from output data
@@ -63,7 +70,7 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
 
     ## Convert the received predictions (list of lists) to a dataframe (specify columns names)
     #TODO CP1 Convert the predictions back to a pandadataframe (you may use other solutions here)
-    y_hat_test = pandas.DataFrame(y_hat_test, columns=['bikes(t+15)','bikes(t+30)','bikes(t+60)'])
+    y_hat_test = pd.DataFrame(y_hat_test, columns=['bikes(t+15)','bikes(t+30)','bikes(t+60)'])
     y_hat_test = y_hat_test.round(0).astype(int)
 
     #print(y_hat_test.iloc[1:50])
@@ -78,9 +85,8 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
     # [0,0,0]TODO CP1 - You can directly compute the mean on the error dataframe
     mean_absolute_error = metrics.mean_absolute_error(y_test,y_hat_test,multioutput='raw_values')
 
-    print("Mean absolute error: {}".format(mean_absolute_error))
-
-    print("Estimator :",classifier.n_estimators)
+    #print("Mean absolute error: {}".format(mean_absolute_error))
+    #print("Nb Estimator :",classifier.n_estimators)
 
     ## Plot Mean Absolute Error
     if show_plot:
@@ -92,7 +98,7 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
         plt.tight_layout()
 
     ##Plot Gini coefficients and their importance
-    if show_plot:
+    if show_plot and plot_gini_coef:
         # TODO CP1 Generate the bar plot for the feature importance from the model (Gini coefficients)
 
         giniCoef = classifier.feature_importances_
@@ -106,7 +112,6 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
         plt.show()
 
     return mean_absolute_error
-
 
 """ 
     Load the data from a file and return it as a panda dataframe 
@@ -137,7 +142,7 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
 def load_data(station_id):
     with open("data/station_data_{}.json".format(station_id)) as ifile:
         json_data = json.load(ifile)
-        dataframe = pandas.read_json(json_data)
+        dataframe = pd.read_json(json_data)
         # print("Columns of the dataframe: \n{}".format(dataframe.columns))
     return dataframe
 
@@ -146,7 +151,12 @@ def load_data(station_id):
 """
 if __name__ == "__main__":
     ##Execute the evaluate method for station 0 without extracting/using time features
-    mae = evaluate(station_id=0, show_plot=True, use_time_features=False)
 
     #TODO CP2 - Use loops to evaluate all possible stations with and without using time features
+
+    for station in range(3):
+
+        print("\nStation_{0} :".format(station))
+        mae = evaluate(station_id=station, show_plot=True, use_time_features=False)
+        print("Mean absolute error: {}".format(mae))
 
