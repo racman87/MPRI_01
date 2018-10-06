@@ -166,7 +166,6 @@ if __name__ == "__main__":
         mae = evaluate(station_id=station, show_plot=False, use_time_features=False, plot_gini_coef=True)
         print("Mean absolute error without time: {}".format(mae))
 
-
         mae = evaluate(station_id=station, show_plot=False, use_time_features=True, plot_gini_coef=True)
         print("Mean absolute error with time: {}".format(mae))
 

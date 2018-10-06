@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3c982e9-0c34-4bea-be6c-8ab22a2f3c56" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/questions3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bike_prediction.py" beforeDir="false" afterPath="$PROJECT_DIR$/bike_prediction.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,11 +26,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bike_prediction.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bike_prediction.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bike_prediction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="169" column="82" selection-start-line="169" selection-start-column="82" selection-end-line="169" selection-end-column="82" />
+            <state relative-caret-position="127">
+              <caret line="159" lean-forward="true" selection-start-line="159" selection-end-line="159" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="questions3.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/questions3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -66,6 +80,13 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>load</find>
@@ -78,6 +99,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/bike_prediction.py" />
+        <option value="$PROJECT_DIR$/questions3.py" />
       </list>
     </option>
   </component>
@@ -141,7 +163,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.questions3">
     <configuration name="bike_prediction" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="bike_predict" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -160,8 +182,31 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="questions3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="bike_predict" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/questions3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.bike_prediction" />
+      <item itemvalue="Python.questions3" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.questions3" />
         <item itemvalue="Python.bike_prediction" />
       </list>
     </recent_temporary>
@@ -181,13 +226,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="26" width="1922" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1328125" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1734375" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.60445386" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4559915" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -421,8 +467,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bike_prediction.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="169" column="82" selection-start-line="169" selection-start-column="82" selection-end-line="169" selection-end-column="82" />
+        <state relative-caret-position="127">
+          <caret line="159" lean-forward="true" selection-start-line="159" selection-end-line="159" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/questions3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
