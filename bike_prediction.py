@@ -1,7 +1,5 @@
 import json
 import pandas as pd
-import numpy as np
-import datetime
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
@@ -12,19 +10,6 @@ from sklearn import metrics
     a Random Forest Regressor algorithm to predict 3 different horizon. The function returns a  
 """
 def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plot=False):
-
-    def index_to_hour(x):
-        #TODO CP2 - return the hour information from the index x
-
-        #for i in range(dfStation.index.values.shape[0]):
-         #   print((pd.to_datetime(dfStation.index.values[i])).hour)
-
-        pass
-
-    def index_to_weekday(x):
-        # TODO CP2 - return the weekday information from the index x
-
-        pass
 
     ## Load data
     #TODO CP1 load the data
@@ -38,10 +23,6 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
         dfStation.insert(0,column='weekday',value=dfStation['TimeStamp'].dt.dayofweek)
         dfStation.insert(0, column='hour', value=dfStation['TimeStamp'].dt.hour)
         dfStation.drop(columns=['TimeStamp'])
-
-        #print(dfStation.iloc[:10])
-
-        #dfStation['weekday'] = dfStation['bikes(t-20)']#(pd.to_datetime(dfStation.index.values)).weekday()
 
 
     ## Split the data into train and test sets (important keep the temporal order)
@@ -80,7 +61,7 @@ def evaluate(station_id, plot_gini_coef=False, use_time_features=False, show_plo
     y_hat_test = pd.DataFrame(y_hat_test, columns=['bikes(t+15)','bikes(t+30)','bikes(t+60)'])
     y_hat_test = y_hat_test.round(0).astype(int)
 
-    #print(y_hat_test.iloc[1:50])
+    #print(y_hat_test.iloc[:50])
 
     ## Compare the obtained predictions and the ground_truth(y_test_set)
     #TODO CP1 Compare the predictions and the groundtruth and measure the Mean Aboslute Error (of each horizon)
@@ -163,9 +144,12 @@ if __name__ == "__main__":
     for station in range(3):
 
         print("\nStation_{0} :".format(station))
+
+        #With time features
         mae = evaluate(station_id=station, show_plot=False, use_time_features=False, plot_gini_coef=True)
         print("Mean absolute error without time: {}".format(mae))
 
+        #Without time features
         mae = evaluate(station_id=station, show_plot=False, use_time_features=True, plot_gini_coef=True)
         print("Mean absolute error with time: {}".format(mae))
 
